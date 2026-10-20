@@ -1,0 +1,22 @@
+---
+const items = [
+  'HomeStars Best of Award 2026',
+  '15+ years renovating',
+  'Owner on every job',
+  'Coquitlam & the Tri-Cities',
+  'Free in-home quotes',
+];
+---
+<section class="bg-dark" aria-label="Why Aloni">
+  <ul class="wrap proof">
+    {items.map((t) => <li>{t}</li>)}
+  </ul>
+</section>
+
+<style>
+  .proof {
+    list-style: none; margin: 0 auto; padding-top: 22px; padding-bottom: 22px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px 32px; font-size: 17px; font-weight: 500;
+  }
+</style>

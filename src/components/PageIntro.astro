@@ -1,0 +1,15 @@
+---
+// Simple page heading for pages without a photo hero.
+const { title, sub } = Astro.props;
+---
+<section class="wrap intro">
+  <h1 class="h1">{title}</h1>
+  {sub && <p class="lede">{sub}</p>}
+  <slot />
+</section>
+
+<style>
+  .intro { padding-top: clamp(40px, 6vw, 88px); padding-bottom: clamp(40px, 5vw, 72px); }
+  .intro .h1 { max-width: 1100px; }
+  .intro .lede { margin: 26px 0 0; max-width: 640px; }
+</style>

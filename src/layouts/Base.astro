@@ -1,0 +1,106 @@
+---
+// The shell every page sits in: <head>, header, footer and mobile call bar.
+import '../styles/global.css';
+import { contact, logo, wix, hero } from '../data/site.js';
+
+const { title, description, image, quoteHref = '#quote' } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image || wix(hero.main.id, 1200, 630);
+
+const nav = [
+  { href: '/bathrooms', label: 'Bathrooms' },
+  { href: '/kitchens', label: 'Kitchens' },
+  { href: '/projects', label: 'Our work' },
+  { href: '/#process', label: 'How it goes' },
+  { href: '/contact', label: 'Contact' },
+];
+
+// Local business info for Google (structured data).
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: contact.business,
+  url: 'https://alonirenovation.ca',
+  logo,
+  image: ogImage,
+  telephone: '+1-604-727-2882',
+  email: contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: contact.street,
+    addressLocality: contact.city,
+    addressRegion: contact.region,
+    addressCountry: contact.country,
+  },
+  areaServed: ['Coquitlam', 'Port Coquitlam', 'Port Moody', 'Burnaby', 'New Westminster'],
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '15:00' },
+  ],
+  sameAs: [contact.instagram, contact.facebook, contact.homestars],
+};
+---
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href={logo} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="theme-color" content="#EEEAE3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://static.wixstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <slot name="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src={logo} alt="" width="48" height="48" />
+        <span>Aloni Renovation</span>
+      </a>
+      <nav class="main-nav" aria-label="Main">
+        {nav.map((n) => (
+          <a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.label}</a>
+        ))}
+      </nav>
+      <a class="header-phone" href={contact.tel}>{contact.phone}</a>
+      <a class="btn btn-primary header-cta" href={quoteHref}>Free quote</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 {contact.business} · {contact.city}, {contact.region} · BN {contact.bn}</span>
+      <nav aria-label="Footer">
+        <a href="/about">About</a>
+        <a href={contact.instagram}>Instagram</a>
+        <a href={contact.facebook}>Facebook</a>
+        <a href={contact.homestars}>HomeStars</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="mobile-bar">
+    <a href={contact.tel}>Call</a>
+    <a href={contact.whatsapp}>WhatsApp</a>
+  </div>
+</body>
+</html>

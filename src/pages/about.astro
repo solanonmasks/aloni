@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import Reviews from '../components/Reviews.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import { contact, homestarsIcon } from '../data/site.js';
+
+// ─────────────────────────────────────────────────────────────
+// DRAFT: the owner's name, photo and story need to come from the client.
+// Replace the text in [square brackets] before launch.
+// ─────────────────────────────────────────────────────────────
+const ownerName = '[Owner name]';
+---
+<Base
+  title="About Aloni Renovation | Owner-Operated in Coquitlam"
+  description="Aloni Renovations Corp. is an owner-operated bathroom and kitchen renovation company in Coquitlam, BC, with over 15 years of experience. HomeStars Best of 2026."
+>
+  <PageIntro title="The owner is on every job." />
+
+  <section class="wrap about">
+    <div class="two-col about-grid">
+      <div class="owner-photo">
+        {/* Replace this placeholder with a photo of the owner. */}
+        <div class="photo-placeholder" role="img" aria-label="Photo of the owner coming soon">Owner photo</div>
+      </div>
+      <div class="story">
+        <p>I’m {ownerName}, and I started Aloni Renovation in Coquitlam over 15 years ago. Before that, [a sentence about how you got into the trade].</p>
+        <p>We’re a small company on purpose. I come out to measure, I write the quote, and I’m on site while the work gets done. You get one person to call, from the first visit to the final walkthrough.</p>
+        <p>Most of what we do is bathrooms and kitchens. That means a lot of time spent on the parts nobody sees: framing, valves, venting and waterproofing. If that’s done right, the tile and fixtures last.</p>
+        <p>[A sentence about your crew, your family or why you like the work.]</p>
+        <p class="sig">{ownerName}<span>Owner, {contact.business}</span></p>
+      </div>
+    </div>
+  </section>
+
+  <ProofStrip />
+
+  <section class="wrap section award">
+    <div class="two-col">
+      <div>
+        <h2 class="h2">HomeStars Best of Award 2026</h2>
+      </div>
+      <div>
+        <p class="muted">The HomeStars Best of Award goes to companies with consistently strong reviews from homeowners. We earned it on bathrooms and kitchens around Coquitlam and the Tri-Cities.</p>
+        <a class="hs-pill" href={contact.homestars}>
+          <img src={homestarsIcon} alt="" width="26" height="26" />
+          Read our HomeStars reviews
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Reviews />
+  <QuoteSection />
+</Base>
+
+<style>
+  .about { padding-bottom: var(--section-y); }
+  .about-grid { align-items: start; }
+  .photo-placeholder {
+    aspect-ratio: 4 / 5; border-radius: 4px; background: var(--img-bg);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--meta); font-weight: 600;
+  }
+  .story p { margin: 0 0 20px; font-size: 20px; color: var(--body-2); max-width: 620px; }
+  .story p:first-child { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 32px); line-height: 1.25; color: var(--espresso); }
+  .sig { font-weight: 700; color: var(--espresso) !important; display: flex; flex-direction: column; }
+  .sig span { font-weight: 400; color: var(--meta); font-size: 17px; }
+  .award .muted { margin: 0 0 24px; max-width: 560px; }
+  .award { border-bottom: 1px solid var(--rule); }
+</style>

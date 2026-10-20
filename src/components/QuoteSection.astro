@@ -1,0 +1,148 @@
+---
+// Quote section: contact details on the left, the request form on the right.
+// The form uses Netlify Forms (works automatically once deployed on Netlify).
+// Submissions arrive in the Netlify dashboard and can be emailed to info@alonirenovation.ca.
+import { contact } from '../data/site.js';
+
+const { heading = 'Tell us about the room.', defaultRoom = 'Bathroom', headingTag = 'h2' } = Astro.props;
+const Heading = headingTag;
+const rooms = ['Bathroom', 'Kitchen', 'Both', 'Whole house', 'Repair'];
+---
+<section id="quote" class="bg-dark">
+  <div class="wrap section two-col quote">
+    <div>
+      <Heading class="h2 quote-title">{heading}</Heading>
+      <p class="quote-sub">We come out, measure, talk through what you want and send a written quote. It's free, and there's no pressure to book.</p>
+      <a class="big-phone" href={contact.tel}>{contact.phone}</a>
+      <div class="quote-info">
+        <div><div class="qi-label">Email</div><a href={`mailto:${contact.email}`}>{contact.email}</a></div>
+        <div><div class="qi-label">Hours</div>Mon–Fri 8am–6pm<br />Saturday 9am–3pm</div>
+        <div><div class="qi-label">Office</div>{contact.street}<br />{contact.city}, {contact.region}</div>
+        <div><div class="qi-label">Message</div><a href={contact.whatsapp}>WhatsApp</a> · <a href={contact.instagram}>Instagram</a></div>
+      </div>
+    </div>
+
+    <div class="quote-card-wrap">
+      <form class="quote-card" name="quote" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="company" data-quote-form>
+        <input type="hidden" name="form-name" value="quote" />
+        <input type="hidden" name="page" value={Astro.url.pathname} />
+        <p class="visually-hidden" aria-hidden="true">
+          <label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label>
+        </p>
+
+        <fieldset class="rooms">
+          <legend>Which room?</legend>
+          <div class="chips">
+            {rooms.map((r) => (
+              <label class="room">
+                <input type="radio" name="room" value={r} checked={r === defaultRoom} />
+                <span>{r}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="field-row">
+          <label class="field">Name<input name="name" type="text" required autocomplete="name" /></label>
+          <label class="field">Phone<input name="phone" type="tel" required autocomplete="tel" /></label>
+        </div>
+        <label class="field">What would you like to change?
+          <textarea name="message" rows="4" placeholder="Main bathroom, about 8x10. Want to swap the tub for a walk-in shower and replace the vanity."></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary quote-submit">Request a free quote</button>
+        <span class="quote-help" data-quote-help>We call back within one business day.</span>
+      </form>
+
+      <div class="quote-card quote-done" hidden data-quote-done tabindex="-1">
+        <p class="done-title">Thank you. We'll call you.</p>
+        <p class="muted">Usually within one business day. In a hurry? Call {contact.phone}.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .quote { align-items: start; gap: 48px var(--col-gap); }
+  .quote-title { margin-bottom: 22px; font-size: clamp(40px, 5vw, 80px); line-height: 1.02; }
+  .quote-sub { margin: 0 0 32px; max-width: 480px; color: var(--on-dark); }
+  .big-phone {
+    display: inline-block; font-family: var(--serif); font-size: clamp(36px, 4vw, 60px);
+    line-height: 1; color: var(--limestone); text-decoration: none;
+  }
+  .big-phone:hover { color: var(--brass); }
+  .quote-info {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px; margin-top: 36px; font-size: 17px; color: var(--on-dark);
+  }
+  .quote-info a { color: var(--on-dark); }
+  .quote-info a:hover { color: var(--limestone); }
+  .qi-label { font-weight: 700; color: var(--limestone); margin-bottom: 4px; }
+
+  .quote-card {
+    background: var(--limestone); color: var(--espresso); border-radius: 6px;
+    padding: clamp(22px, 3vw, 40px); display: flex; flex-direction: column; gap: 20px;
+  }
+  .quote-card[hidden] { display: none; }
+  .rooms { border: 0; margin: 0; padding: 0; }
+  .rooms legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
+  .room { position: relative; }
+  .room input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .room span {
+    display: inline-flex; align-items: center; border: 1.5px solid var(--espresso); border-radius: 999px;
+    font-weight: 600; font-size: 16px; padding: 9px 16px; min-height: 44px; cursor: pointer;
+  }
+  .room input:checked + span { background: var(--espresso); color: var(--limestone); }
+  .room input:focus-visible + span { outline: 3px solid var(--brass); outline-offset: 3px; }
+
+  .field-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px; }
+  .field input, .field textarea {
+    border: 1.5px solid var(--espresso); border-radius: 4px; background: #fff;
+    font: inherit; font-size: 18px; font-weight: 400; color: var(--espresso);
+  }
+  .field input { height: 52px; padding: 0 14px; }
+  .field textarea { padding: 12px 14px; resize: vertical; }
+  .field input:focus, .field textarea:focus { outline: 3px solid var(--brass); outline-offset: 1px; }
+  .quote-submit { font-weight: 700; padding: 18px; width: 100%; }
+  .quote-submit[disabled] { opacity: .6; cursor: wait; }
+  .quote-help { font-size: 15px; color: var(--meta); }
+  .quote-help.is-error { color: #8A2B1F; font-weight: 600; }
+  .done-title { margin: 0 0 8px; font-family: var(--serif); font-size: 34px; line-height: 1.1; }
+  .quote-done p { margin: 0; }
+  .quote-done .done-title { margin-bottom: 8px; }
+</style>
+
+<script>
+  // Send the form in the background and show the thank-you message.
+  // Without JavaScript the form still works and goes to /thanks.
+  document.querySelectorAll('[data-quote-form]').forEach((form) => {
+    const wrap = form.parentElement;
+    const done = wrap.querySelector('[data-quote-done]');
+    const help = form.querySelector('[data-quote-help]');
+    const button = form.querySelector('button[type="submit"]');
+    const helpText = help.textContent;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      button.disabled = true;
+      help.classList.remove('is-error');
+      help.textContent = 'Sending…';
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      } catch {
+        help.classList.add('is-error');
+        help.textContent = 'Sorry, that didn’t send. Please call 604-727-2882 or try again.';
+        button.disabled = false;
+        setTimeout(() => { if (!button.disabled) { help.classList.remove('is-error'); help.textContent = helpText; } }, 8000);
+      }
+    });
+  });
+</script>

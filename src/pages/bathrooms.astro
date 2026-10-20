@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import Included from '../components/Included.astro';
+import Process from '../components/Process.astro';
+import Gallery from '../components/Gallery.astro';
+import Reviews from '../components/Reviews.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import { gallery, bathroomProcess } from '../data/site.js';
+
+const included = [
+  { t: 'Design and layout', d: 'Where the vanity, toilet and shower go, tile and fixture picks, and a written quote with each item listed.' },
+  { t: 'Demo to the studs', d: 'Old tile, tub, vanity and drywall out. We check the framing and subfloor and fix what’s soft or out of level.' },
+  { t: 'Plumbing and electrical', d: 'New valves and drains, moved fixtures, GFCI outlets, pot lights and a bath fan vented outside, not into the attic.' },
+  { t: 'Schluter waterproofing', d: 'Membrane on every wet wall and floor, sealed seams and corners, then a flood test before any tile goes on.' },
+  { t: 'Tile', d: 'Large-format porcelain, mosaic floors, niches, tile to the ceiling. Curbless showers and heated floors if you want them.' },
+  { t: 'Vanity, glass and finish', d: 'Vanity and quartz top, toilet, fixtures, glass, paint and caulk. Then a walkthrough and a clean room.' },
+];
+---
+<Base
+  title="Bathroom Renovation in Coquitlam | Aloni Renovation"
+  description="Bathroom renovations in Coquitlam and the Tri-Cities: tub-to-shower conversions, curbless showers, heated floors and Schluter waterproofing. Usually 3–4 weeks. Free quotes."
+>
+  <Hero
+    title="Bathroom renovations, done properly behind the wall."
+    sub="Tub-to-shower conversions, curbless showers, double vanities and tile to the ceiling. We handle the design, demo, plumbing, waterproofing, tile and finish. A full bathroom is usually three to four weeks."
+    main={{ id: '46d4d376ac39408d81d2e1fa753902d9', alt: 'Skylit bathroom with glass shower and tub' }}
+    inset={{ id: '03b98328e16c40029688a0860371b96a', alt: 'Green tile tub surround with niche' }}
+  />
+  <ProofStrip />
+  <Included items={included} intro="One crew does the whole job, so nothing gets lost between trades." />
+  <Process steps={bathroomProcess} />
+  <Gallery heading="Recent bathrooms" items={gallery.filter((g) => g.cat === 'Bath')} filters={false} moreLink={{ href: '/projects', label: 'See all our projects' }} />
+  <Reviews tag="bathroom" />
+  <QuoteSection heading="Tell us about your bathroom." defaultRoom="Bathroom" />
+</Base>

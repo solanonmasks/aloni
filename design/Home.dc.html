@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#EEEAE3}*{box-sizing:border-box}a{color:#2E4A3E}a:hover{color:#1E1C19}</style>
+</helmet>
+<div style="font-family:'Hanken Grotesk',sans-serif;font-size:18px;line-height:1.55;color:#1E1C19;background:#EEEAE3;padding-bottom:{{ padBottom }}">
+
+<header style="position:sticky;top:0;z-index:40;background:#EEEAE3;border-bottom:1px solid #CFC7BA">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(16px,3vw,40px);height:78px;display:flex;align-items:center;gap:28px">
+    <a href="#top" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#1E1C19;flex-shrink:0">
+      <img src="https://static.wixstatic.com/media/e92e3c_03bf017c85c24d53911c3dd8c389c71a~mv2.png/v1/fill/w_120,h_118,al_c,q_90/logo.png" alt="Aloni Renovation" style="width:48px;height:48px;object-fit:contain;display:block"></img>
+      <span style="font-family:'Young Serif',serif;font-size:23px;letter-spacing:-.01em;white-space:nowrap">Aloni Renovation</span>
+    </a>
+    <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:28px;margin-left:auto;font-size:17px;font-weight:500">
+        <a href="#services" style="color:#1E1C19;text-decoration:none" style-hover="color:#2E4A3E;text-decoration:underline">Bathrooms</a>
+        <a href="#services" style="color:#1E1C19;text-decoration:none" style-hover="color:#2E4A3E;text-decoration:underline">Kitchens</a>
+        <a href="#work" style="color:#1E1C19;text-decoration:none" style-hover="color:#2E4A3E;text-decoration:underline">Our work</a>
+        <a href="#process" style="color:#1E1C19;text-decoration:none" style-hover="color:#2E4A3E;text-decoration:underline">How it goes</a>
+        <a href="#quote" style="color:#1E1C19;text-decoration:none" style-hover="color:#2E4A3E;text-decoration:underline">Contact</a>
+      </nav>
+      <a href="tel:+16047272882" style="white-space:nowrap;font-weight:700;font-size:20px;color:#1E1C19;text-decoration:none" style-hover="color:#2E4A3E">604-727-2882</a>
+      <a href="#quote" style="white-space:nowrap;background:#2E4A3E;color:#EEEAE3;text-decoration:none;font-weight:600;font-size:17px;padding:13px 20px;border-radius:999px" style-hover="background:#1E1C19;color:#EEEAE3">Free quote</a>
+    </sc-if>
+    <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+      <a href="tel:+16047272882" style="margin-left:auto;white-space:nowrap;font-weight:700;font-size:18px;color:#2E4A3E;text-decoration:none">604-727-2882</a>
+    </sc-if>
+  </div>
+</header>
+
+<section id="top" data-screen-label="Hero" style="max-width:1440px;margin:0 auto;padding:clamp(28px,4vw,56px) clamp(16px,3vw,40px) clamp(48px,6vw,88px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:40px clamp(32px,5vw,80px);align-items:center">
+    <div>
+      <a href="https://www.homestars.com/profile/3004677-aloni-renovations-corp" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#1E1C19;background:#E2DACB;padding:7px 14px 7px 8px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap">
+        <img src="https://static.wixstatic.com/media/e92e3c_f177a064fe7344f185f5180db37233be~mv2.png/v1/fill/w_80,h_80,al_c,q_90/hs.png" alt="" style="width:26px;height:26px;display:block"></img>
+        HomeStars Best of 2026
+      </a>
+      <h1 style="margin:24px 0 0;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(48px,6.4vw,104px);line-height:1;letter-spacing:-.025em;text-wrap:balance">Bathrooms and kitchens, from first sketch to final caulk line.</h1>
+      <p style="margin:26px 0 0;max-width:540px;font-size:20px;color:#4A453E">Owner-operated in Coquitlam for over 15 years. We design it, take it down to the studs, build it back and clean up. One crew, one quote, one person to call.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+        <a href="#quote" style="background:#2E4A3E;color:#EEEAE3;text-decoration:none;font-weight:600;font-size:18px;padding:17px 26px;border-radius:999px" style-hover="background:#1E1C19;color:#EEEAE3">Get a free quote</a>
+        <a href="https://wa.me/16047272882" style="border:1.5px solid #1E1C19;color:#1E1C19;text-decoration:none;font-weight:600;font-size:18px;padding:15.5px 24px;border-radius:999px" style-hover="background:#1E1C19;color:#EEEAE3">WhatsApp us a photo</a>
+      </div>
+    </div>
+    <div style="position:relative;padding:0 0 clamp(40px,5vw,72px) clamp(40px,5vw,80px)">
+      <img src="{{ img.hero }}" alt="Renovated bathroom with skylight, freestanding tub and walnut vanity" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;display:block;background:#DAD3C7"></img>
+      <img src="{{ img.heroInset }}" alt="Freestanding tub under a corner window" style="position:absolute;left:0;bottom:0;width:44%;aspect-ratio:3/4;object-fit:cover;border-radius:4px;border:8px solid #EEEAE3;display:block;background:#DAD3C7"></img>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Proof" style="background:#1E1C19;color:#EEEAE3">
+  <div style="max-width:1440px;margin:0 auto;padding:22px clamp(16px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px 32px;font-size:17px;font-weight:500">
+    <span>HomeStars Best of Award 2026</span>
+    <span>15+ years renovating</span>
+    <span>Owner on every job</span>
+    <span>Coquitlam &amp; the Tri-Cities</span>
+    <span>Free in-home quotes</span>
+  </div>
+</section>
+
+<section id="services" data-screen-label="Services" style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+  <h2 style="margin:0 0 48px;max-width:900px;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(38px,4.6vw,72px);line-height:1.04;letter-spacing:-.02em">Mostly bathrooms. A lot of kitchens. Sometimes the whole house.</h2>
+  <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px">
+    <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+      <article style="grid-column:{{ s.span }};display:flex;flex-direction:column;gap:16px">
+        <img src="{{ s.img }}" alt="{{ s.alt }}" style="width:100%;aspect-ratio:{{ s.ratio }};object-fit:cover;border-radius:4px;display:block;background:#DAD3C7"></img>
+        <div style="display:flex;flex-direction:column;gap:6px;max-width:560px">
+          <h3 style="margin:0;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(26px,2.4vw,34px);line-height:1.1">{{ s.name }}</h3>
+          <p style="margin:0;color:#4A453E">{{ s.body }}</p>
+          <span style="font-size:16px;font-weight:600;color:#2E4A3E">{{ s.meta }}</span>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Before and after" style="background:#2E4A3E;color:#EEEAE3">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:40px clamp(32px,5vw,80px);align-items:center">
+    <div>
+      <h2 style="margin:0 0 20px;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(38px,4.6vw,72px);line-height:1.04;letter-spacing:-.02em">Same room. Same window.</h2>
+      <p style="margin:0 0 28px;max-width:480px;color:#D3DCD5">{{ ba.story }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px">
+        <sc-for list="{{ baJobs }}" as="j" hint-placeholder-count="2">
+          <button onClick="{{ j.pick }}" style="background:{{ j.bg }};color:{{ j.fg }};border:1.5px solid #EEEAE3;border-radius:999px;font:inherit;font-weight:600;font-size:16px;padding:10px 18px;cursor:pointer;min-height:44px">{{ j.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:inline-flex;background:#1E1C19;border-radius:999px;padding:5px">
+        <button onClick="{{ showBefore }}" style="background:{{ beforeBg }};color:{{ beforeFg }};border:0;border-radius:999px;font:inherit;font-weight:700;font-size:17px;padding:12px 26px;cursor:pointer;min-height:48px">Before</button>
+        <button onClick="{{ showAfter }}" style="background:{{ afterBg }};color:{{ afterFg }};border:0;border-radius:999px;font:inherit;font-weight:700;font-size:17px;padding:12px 26px;cursor:pointer;min-height:48px">After</button>
+      </div>
+    </div>
+    <figure style="margin:0;position:relative">
+      <img src="{{ baSrc }}" alt="{{ baAlt }}" style="width:100%;aspect-ratio:3/4;max-height:760px;object-fit:cover;border-radius:4px;display:block;background:#24392F"></img>
+      <figcaption style="position:absolute;top:16px;left:16px;background:#EEEAE3;color:#1E1C19;font-weight:700;font-size:15px;padding:6px 12px;border-radius:999px">{{ baLabel }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="process" data-screen-label="Process" style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:44px">
+    <h2 style="margin:0;max-width:760px;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(38px,4.6vw,72px);line-height:1.04;letter-spacing:-.02em">How a bathroom usually goes</h2>
+    <p style="margin:0;max-width:420px;color:#4A453E">A full bathroom is about three to four weeks of work once materials are on site. Kitchens run five to eight.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0;border-top:1.5px solid #1E1C19">
+    <sc-for list="{{ process }}" as="p" hint-placeholder-count="5">
+      <div style="padding:22px 24px 8px 0;border-left:{{ p.border }};padding-left:{{ p.pl }}">
+        <div style="font-size:15px;font-weight:700;color:#2E4A3E">{{ p.when }}</div>
+        <h3 style="margin:6px 0 8px;font-family:'Young Serif',serif;font-weight:400;font-size:26px;line-height:1.1">{{ p.t }}</h3>
+        <p style="margin:0;color:#4A453E;font-size:17px">{{ p.d }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="work" data-screen-label="Gallery" style="background:#E4DED3">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px;margin-bottom:36px">
+      <h2 style="margin:0;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(38px,4.6vw,72px);line-height:1.04;letter-spacing:-.02em">Recent work</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <button onClick="{{ f.pick }}" style="background:{{ f.bg }};color:{{ f.fg }};border:1.5px solid #1E1C19;border-radius:999px;font:inherit;font-weight:600;font-size:16px;padding:9px 16px;cursor:pointer;min-height:44px">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="column-width:300px;column-gap:16px">
+      <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="12">
+        <img onClick="{{ g.open }}" src="{{ g.src }}" alt="{{ g.alt }}" style="width:100%;aspect-ratio:{{ g.ratio }};object-fit:cover;border-radius:4px;display:block;margin:0 0 16px;break-inside:avoid;cursor:zoom-in;background:#DAD3C7"></img>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ hasLightbox }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:80;background:rgba(30,28,25,.94);display:flex;align-items:center;justify-content:center;padding:24px;cursor:zoom-out">
+    <img src="{{ lightbox.big }}" alt="{{ lightbox.alt }}" style="max-width:100%;max-height:90vh;object-fit:contain;border-radius:4px;display:block"></img>
+  </div>
+</sc-if>
+
+<section data-screen-label="Review" style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+  <figure style="margin:0;max-width:1100px">
+    <blockquote style="margin:0;font-family:'Young Serif',serif;font-size:clamp(28px,3.4vw,52px);line-height:1.2;letter-spacing:-.015em;text-wrap:pretty">“They removed my old kitchen and bathroom and replaced them at a reasonable cost. The quality of the work is excellent, and both rooms look fantastic.”</blockquote>
+    <figcaption style="margin-top:24px;font-weight:600">M. Milano <span style="font-weight:400;color:#6B645A">· Kitchen and bathroom</span></figcaption>
+  </figure>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:48px;padding-top:24px;border-top:1px solid #CFC7BA">
+    <img src="https://static.wixstatic.com/media/e92e3c_f177a064fe7344f185f5180db37233be~mv2.png/v1/fill/w_80,h_80,al_c,q_90/hs.png" alt="HomeStars" style="width:36px;height:36px;display:block"></img>
+    <span style="font-weight:600">HomeStars Best of Award 2026</span>
+    <a href="https://www.homestars.com/profile/3004677-aloni-renovations-corp" style="font-weight:600">Read our HomeStars reviews</a>
+  </div>
+</section>
+
+<section id="quote" data-screen-label="Quote" style="background:#1E1C19;color:#EEEAE3">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:48px clamp(32px,5vw,80px);align-items:start">
+    <div>
+      <h2 style="margin:0 0 22px;font-family:'Young Serif',serif;font-weight:400;font-size:clamp(40px,5vw,80px);line-height:1.02;letter-spacing:-.02em">Tell us about the room.</h2>
+      <p style="margin:0 0 32px;max-width:480px;color:#C9C2B6">We come out, measure, talk through what you want and send a written quote. It's free, and there's no pressure to book.</p>
+      <a href="tel:+16047272882" style="display:block;font-family:'Young Serif',serif;font-size:clamp(36px,4vw,60px);line-height:1;color:#EEEAE3;text-decoration:none" style-hover="color:#C29B57">604-727-2882</a>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:36px;font-size:17px;color:#C9C2B6">
+        <div><div style="font-weight:700;color:#EEEAE3;margin-bottom:4px">Email</div><a href="mailto:info@alonirenovation.ca" style="color:#C9C2B6">info@alonirenovation.ca</a></div>
+        <div><div style="font-weight:700;color:#EEEAE3;margin-bottom:4px">Hours</div>Mon–Fri 8am–6pm<br>Saturday 9am–3pm</div>
+        <div><div style="font-weight:700;color:#EEEAE3;margin-bottom:4px">Office</div>1330 Winslow Ave<br>Coquitlam, BC</div>
+        <div><div style="font-weight:700;color:#EEEAE3;margin-bottom:4px">Message</div><a href="https://wa.me/16047272882" style="color:#C9C2B6">WhatsApp</a> · <a href="https://www.instagram.com/aloni_renovation" style="color:#C9C2B6">Instagram</a></div>
+      </div>
+    </div>
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ submit }}" style="background:#EEEAE3;color:#1E1C19;border-radius:6px;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:20px">
+        <div>
+          <div style="font-weight:700;margin-bottom:10px">Which room?</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ rooms }}" as="r" hint-placeholder-count="5">
+              <button type="button" onClick="{{ r.pick }}" style="background:{{ r.bg }};color:{{ r.fg }};border:1.5px solid #1E1C19;border-radius:999px;font:inherit;font-weight:600;font-size:16px;padding:9px 16px;cursor:pointer;min-height:44px">{{ r.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:16px">Name<input required="required" type="text" style="height:52px;padding:0 14px;border:1.5px solid #1E1C19;border-radius:4px;background:#fff;font:inherit;font-size:18px;font-weight:400"></input></label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:16px">Phone<input required="required" type="tel" style="height:52px;padding:0 14px;border:1.5px solid #1E1C19;border-radius:4px;background:#fff;font:inherit;font-size:18px;font-weight:400"></input></label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:16px">What would you like to change?<textarea rows="4" placeholder="Main bathroom, about 8x10. Want to swap the tub for a walk-in shower and replace the vanity." style="padding:12px 14px;border:1.5px solid #1E1C19;border-radius:4px;background:#fff;font:inherit;font-size:18px;font-weight:400;resize:vertical"></textarea></label>
+        <button type="submit" style="background:#2E4A3E;color:#EEEAE3;border:0;border-radius:999px;font:inherit;font-weight:700;font-size:18px;padding:18px;cursor:pointer" style-hover="background:#1E1C19">Request a free quote</button>
+        <span style="font-size:15px;color:#6B645A">We call back within one business day.</span>
+      </form>
+    </sc-if>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#EEEAE3;color:#1E1C19;border-radius:6px;padding:clamp(24px,3vw,40px)">
+        <p style="margin:0 0 8px;font-family:'Young Serif',serif;font-size:34px;line-height:1.1">Thank you. We'll call you.</p>
+        <p style="margin:0;color:#4A453E">Usually within one business day. In a hurry? Call 604-727-2882.</p>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<footer style="background:#1E1C19;color:#9C9488;border-top:1px solid #3A3631">
+  <div style="max-width:1440px;margin:0 auto;padding:28px clamp(16px,3vw,40px) 36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:15px">
+    <span>© 2026 Aloni Renovations Corp. · Coquitlam, BC · BN 757812102</span>
+    <span style="display:flex;flex-wrap:wrap;gap:20px"><a href="https://www.instagram.com/aloni_renovation" style="color:#9C9488">Instagram</a><a href="https://www.facebook.com/share/1F9Epa4JrQ/" style="color:#9C9488">Facebook</a><a href="https://www.homestars.com/profile/3004677-aloni-renovations-corp" style="color:#9C9488">HomeStars</a></span>
+  </div>
+</footer>
+
+<sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:1fr 1fr">
+    <a href="tel:+16047272882" style="background:#2E4A3E;color:#EEEAE3;text-decoration:none;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;height:60px">Call</a>
+    <a href="https://wa.me/16047272882" style="background:#1E1C19;color:#EEEAE3;text-decoration:none;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;height:60px">WhatsApp</a>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const W = (id, w, h, ext) => 'https://static.wixstatic.com/media/e92e3c_' + id + '~mv2.' + (ext || 'jpg') + '/v1/fill/w_' + w + ',h_' + h + ',al_c,q_85,enc_auto/a.jpg';
+const G = [
+  ['9b10be874d1b45f1ac6a6968e79ea787', 'Bath', '4/5', 'Bathroom with skylight and freestanding tub'],
+  ['2f14eb903bcc4cc3b71dd8fe02d20be9', 'Kitchen', '4/3', 'Kitchen corner with grey cabinets', 'jpeg'],
+  ['46d4d376ac39408d81d2e1fa753902d9', 'Bath', '3/4', 'Skylit bathroom, glass shower and tub'],
+  ['b824a5569e6243b4bf5fef08260e03ec', 'Living', '4/3', 'Dining area with pendant light'],
+  ['03b98328e16c40029688a0860371b96a', 'Bath', '9/16', 'Green tile tub surround with niche'],
+  ['348514d4db254d6c95aa640d7adcac61', 'Bath', '4/3', 'Glass shower and long vanity under skylight'],
+  ['f7c30459dba74264a42ac11c2e90c217', 'Kitchen', '16/10', 'Quartz counter with under-cabinet lighting'],
+  ['ac5b1ad080d741ba94371eea5876394d', 'Bath', '3/4', 'Tub shower with brass fixtures'],
+  ['152022d8fc4a46eda47d10fbc1e52f27', 'Living', '4/3', 'Living room with fireplace and panelled wall', 'jpeg'],
+  ['678b86774d2d45cc864670a42f27bca7', 'Bath', '9/16', 'White tile shower with gold hardware'],
+  ['9ea48662a28d45e0a16c243ac003af1f', 'Bath', '4/3', 'Freestanding tub on black hex tile', 'png'],
+  ['704fdfe7d6814563a44e2d57de47f218', 'Bath', '3/4', 'Powder room with wainscoting'],
+  ['00fe476f00004ffb935afdf9e1bc846f', 'Bath', '3/4', 'Walk-in shower with black frame', 'jpeg'],
+  ['98c2f052153942b39de6669dc7e148f4', 'Bath', '3/4', 'Dark accent wall and floating vanity']
+];
+const BA = [
+  { label: 'Main bath, Coquitlam', before: W('30924e5d10794cc28254ff933246a79c', 900, 1200), after: W('b2986b12d7b5444b860783462ac827ed', 900, 1200), story: 'An almond vanity with a cultured-marble top, brass lights and a dated tub. We took it to the studs, moved to a long two-sink vanity in white quartz and redid the lighting.' },
+  { label: 'Tub and shower', before: W('ca5239cea1de47dd9c6ce66e4cf564ee', 900, 1200), after: W('95469b89c07e403195467906fa3c73e6', 900, 1200), story: 'Old tile came off down to the framing. New waterproofing, large-format porcelain to the ceiling, a niche, and a wood vanity to warm it up.' }
+];
+class Component extends DCLogic {
+  state = { w: window.innerWidth, ba: 0, side: 'after', filter: 'All', lb: -1, room: 'Bathroom', sent: false };
+  componentDidMount() { this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const s = this.state, mobile = s.w < 1100, narrow = s.w < 860;
+    const ba = BA[s.ba], after = s.side === 'after';
+    const on = (x) => x ? { bg: '#1E1C19', fg: '#EEEAE3' } : { bg: 'transparent', fg: '#1E1C19' };
+    const gal = G.filter(g => s.filter === 'All' || (s.filter === 'Bathrooms' ? g[1] === 'Bath' : s.filter === 'Kitchens' ? g[1] === 'Kitchen' : g[1] === 'Living'));
+    const gallery = gal.map(([id, cat, ratio, alt, ext], i) => {
+      const [a, b] = ratio.split('/').map(Number);
+      return { src: W(id, 600, Math.round(600 * b / a), ext), big: W(id, 1600, Math.round(1600 * b / a), ext), ratio, alt, open: () => this.setState({ lb: i }) };
+    });
+    const services = [
+      { name: 'Bathroom renovation', body: 'Tub-to-shower conversions, curbless showers, heated floors, double vanities, tile to the ceiling. Everything behind the wall is done properly: Schluter waterproofing, new valves, venting that actually vents.', meta: 'Usually 3–4 weeks', img: W('fef4d71f7e3a4e9c8500030788bbe9fd', 1400, 1000), alt: 'Freestanding tub under a corner window', ratio: '7/5', span: narrow ? '1 / -1' : '1 / span 7' },
+      { name: 'Kitchen remodeling', body: 'New layout or same footprint. Cabinets, quartz, backsplash, lighting, plumbing and electrical, coordinated by us so you\u2019re not chasing five trades.', meta: 'Usually 5–8 weeks', img: W('2f14eb903bcc4cc3b71dd8fe02d20be9', 1000, 1250, 'jpeg'), alt: 'Kitchen with grey shaker cabinets', ratio: '4/5', span: narrow ? '1 / -1' : '8 / span 5' },
+      { name: 'Full house renovation', body: 'Floors, walls, trim, lighting, bathrooms and kitchen in one schedule, for a house you just bought or one you\u2019ve been in for twenty years.', meta: 'Scoped room by room', img: W('152022d8fc4a46eda47d10fbc1e52f27', 1000, 750, 'jpeg'), alt: 'Living room with fireplace', ratio: '4/3', span: narrow ? '1 / -1' : '1 / span 5' },
+      { name: 'Home repair', body: 'Drywall, tile and grout repairs, leaks behind showers, doors and trim. The small jobs other renovators won\u2019t call back about.', meta: 'Often within the week', img: W('f7da93bb74b7478ba0ad8289944622dd', 1400, 1000), alt: 'Double vanity with backlit mirrors', ratio: '7/5', span: narrow ? '1 / -1' : '6 / span 7' }
+    ];
+    return {
+      mobile, desktop: !mobile, padBottom: mobile ? '60px' : '0',
+      img: { hero: W('9b10be874d1b45f1ac6a6968e79ea787', 1100, 1375), heroInset: W('bfd0d6c3c6e643d5b3e63f562e48658b', 600, 800) },
+      services,
+      ba, baSrc: after ? ba.after : ba.before, baLabel: after ? 'After' : 'Before', baAlt: ba.label + (after ? ', after' : ', before'),
+      baJobs: BA.map((j, i) => ({ label: j.label, bg: i === s.ba ? '#EEEAE3' : 'transparent', fg: i === s.ba ? '#2E4A3E' : '#EEEAE3', pick: () => this.setState({ ba: i, side: 'before' }) })),
+      showBefore: () => this.setState({ side: 'before' }), showAfter: () => this.setState({ side: 'after' }),
+      beforeBg: after ? 'transparent' : '#EEEAE3', beforeFg: after ? '#EEEAE3' : '#1E1C19',
+      afterBg: after ? '#EEEAE3' : 'transparent', afterFg: after ? '#1E1C19' : '#EEEAE3',
+      process: [
+        { when: 'Day one', t: 'Visit and measure', d: 'We look at the room, the plumbing and what\u2019s under the floor, and talk through what you want.' },
+        { when: 'Within a week', t: 'Design and quote', d: 'Layout, tile and fixture picks, and a written quote with each item listed.' },
+        { when: 'Week 1', t: 'Demo and rough-in', d: 'Down to the studs. Plumbing and electrical moved, walls and floor made flat.' },
+        { when: 'Weeks 2–3', t: 'Waterproof and tile', d: 'Membrane, flood test, then tile. This is where the time goes, and it should.' },
+        { when: 'Week 4', t: 'Fixtures and finish', d: 'Vanity, glass, fixtures, paint, caulk. Then a walkthrough and a clean room.' }
+      ].map((p, i) => ({ ...p, border: i === 0 || narrow ? '0' : '1px solid #CFC7BA', pl: i === 0 || narrow ? '0' : '24px' })),
+      filters: ['All', 'Bathrooms', 'Kitchens', 'Living'].map(l => ({ label: l, ...on(l === s.filter), pick: () => this.setState({ filter: l }) })),
+      gallery, hasLightbox: s.lb >= 0 && !!gallery[s.lb], lightbox: gallery[s.lb] || {}, closeLightbox: () => this.setState({ lb: -1 }),
+      rooms: ['Bathroom', 'Kitchen', 'Both', 'Whole house', 'Repair'].map(l => ({ label: l, ...on(l === s.room), pick: () => this.setState({ room: l }) })),
+      notSent: !s.sent, sent: s.sent, submit: e => { e.preventDefault(); this.setState({ sent: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

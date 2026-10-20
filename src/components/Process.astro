@@ -1,0 +1,47 @@
+---
+// Timeline: five steps in columns with thin dividers. Stacks on narrow screens.
+import { bathroomProcess } from '../data/site.js';
+
+const {
+  id = 'process',
+  heading = 'How a bathroom usually goes',
+  note = 'A full bathroom is about three to four weeks of work once materials are on site. Kitchens run five to eight.',
+  steps = bathroomProcess,
+} = Astro.props;
+---
+<section id={id} class="wrap section">
+  <div class="section-head">
+    <h2 class="h2" style="max-width:760px">{heading}</h2>
+    {note && <p>{note}</p>}
+  </div>
+  <ol class="steps">
+    {steps.map((s) => (
+      <li class="step">
+        <div class="label">{s.when}</div>
+        <h3>{s.t}</h3>
+        <p>{s.d}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .steps {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1.5px solid var(--espresso);
+  }
+  .step { padding: 22px 24px 8px; border-left: 1px solid var(--rule); }
+  .step:first-child { padding-left: 0; border-left: 0; }
+  .step h3 { margin: 6px 0 8px; font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.1; }
+  .step p { margin: 0; color: var(--body-2); font-size: 17px; }
+  @media (max-width: 1240px) and (min-width: 860px) {
+    .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .step:nth-child(4) { padding-left: 0; border-left: 0; }
+  }
+  @media (max-width: 859px) {
+    .steps { grid-template-columns: 1fr; }
+    .step { padding-left: 0; border-left: 0; padding-bottom: 18px; }
+    .step + .step { border-top: 1px solid var(--rule); }
+  }
+</style>

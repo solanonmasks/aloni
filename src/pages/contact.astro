@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import { contact } from '../data/site.js';
+---
+<Base
+  title="Contact & Free Quote | Aloni Renovation, Coquitlam"
+  description="Request a free in-home quote for your bathroom or kitchen renovation in Coquitlam. Call 604-727-2882, WhatsApp us a photo, or send the form."
+>
+  <QuoteSection heading="Tell us about the room." headingTag="h1" />
+
+  <section class="wrap section whatsapp">
+    <div class="two-col wa-grid">
+      <div>
+        <h2 class="h2">WhatsApp us a photo.</h2>
+      </div>
+      <div>
+        <p class="muted">Not ready for a visit? Send a few photos of the room and a line about what you want to change. We’ll reply with a rough idea of scope, timing and next steps.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href={contact.whatsapp}>Open WhatsApp</a>
+          <a class="btn btn-outline" href={contact.tel}>Call {contact.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wa-grid { align-items: center; }
+  .whatsapp .muted { margin: 0; max-width: 520px; }
+</style>

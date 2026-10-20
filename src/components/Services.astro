@@ -1,0 +1,44 @@
+---
+// Home page services: uneven 12-column grid of four cards.
+import Img from './Img.astro';
+import { services } from '../data/site.js';
+---
+<section id="services" class="wrap section">
+  <h2 class="h2 services-title">Mostly bathrooms. A lot of kitchens. Sometimes the whole house.</h2>
+  <div class="services-grid">
+    {services.map((s) => (
+      <article class={`card card-${s.layout}`}>
+        {s.href ? (
+          <a href={s.href} class="card-img-link" tabindex="-1" aria-hidden="true">
+            <Img id={s.id} ext={s.ext} ratio={s.ratio} alt={s.alt} sizes="(max-width: 860px) 100vw, 58vw" />
+          </a>
+        ) : (
+          <Img id={s.id} ext={s.ext} ratio={s.ratio} alt={s.alt} sizes="(max-width: 860px) 100vw, 58vw" />
+        )}
+        <div class="card-text">
+          <h3 class="h3">{s.href ? <a href={s.href}>{s.name}</a> : s.name}</h3>
+          <p class="muted">{s.body}</p>
+          <span class="card-meta">{s.meta}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .services-title { margin-bottom: 48px; max-width: 900px; }
+  .services-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px 24px; }
+  .card { display: flex; flex-direction: column; gap: 16px; }
+  .card-a { grid-column: 1 / span 7; }
+  .card-b { grid-column: 8 / span 5; }
+  .card-c { grid-column: 1 / span 5; }
+  .card-d { grid-column: 6 / span 7; }
+  .card-text { display: flex; flex-direction: column; gap: 6px; max-width: 560px; }
+  .card-text p { margin: 0; }
+  .card-text h3 a { color: inherit; text-decoration: none; }
+  .card-text h3 a:hover { color: var(--tile-green); text-decoration: underline; text-underline-offset: 4px; }
+  .card-meta { font-size: 16px; font-weight: 600; color: var(--tile-green); }
+  @media (max-width: 859px) {
+    .card-a, .card-b, .card-c, .card-d { grid-column: 1 / -1; }
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import Included from '../components/Included.astro';
+import Process from '../components/Process.astro';
+import Gallery from '../components/Gallery.astro';
+import Reviews from '../components/Reviews.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import { gallery, kitchenProcess } from '../data/site.js';
+
+const included = [
+  { t: 'Layout and design', d: 'Keep the footprint or move things around. Cabinet layout, quartz and backsplash picks, and a lighting plan.' },
+  { t: 'Demo and prep', d: 'Old cabinets, counters and flooring out. Walls and floor made flat and square so the new cabinets sit level.' },
+  { t: 'Plumbing, gas and electrical', d: 'Sink and dishwasher lines moved, new circuits for appliances, under-cabinet lighting and pot lights.' },
+  { t: 'Cabinets and quartz', d: 'Cabinets installed and levelled, quartz templated and set, sink and faucet mounted.' },
+  { t: 'Backsplash and finish', d: 'Tile backsplash, trim, paint, appliance hookups, then a walkthrough and a clean kitchen.' },
+  { t: 'One schedule', d: 'We coordinate every trade and delivery, so you’re not chasing five different companies.' },
+];
+---
+<Base
+  title="Kitchen Remodeling in Coquitlam | Aloni Renovation"
+  description="Kitchen remodeling in Coquitlam and the Tri-Cities: cabinets, quartz, backsplash, lighting, plumbing and electrical, coordinated by one crew. Usually 5–8 weeks. Free quotes."
+>
+  <Hero
+    title="Kitchen remodeling, coordinated by one crew."
+    sub="New layout or same footprint. Cabinets, quartz, backsplash, lighting, plumbing and electrical, scheduled by us so you’re not chasing five trades. Most kitchens take five to eight weeks."
+    main={{ id: '2f14eb903bcc4cc3b71dd8fe02d20be9', ext: 'jpeg', alt: 'Kitchen with grey shaker cabinets' }}
+    inset={{ id: 'f7c30459dba74264a42ac11c2e90c217', alt: 'Quartz counter with under-cabinet lighting' }}
+  />
+  <ProofStrip />
+  <Included items={included} intro="Cabinets, counters and the trades behind them, on one quote." />
+  <Process
+    heading="How a kitchen usually goes"
+    note="Most kitchens are five to eight weeks of work. Cabinet and quartz lead times set the pace, so we order early."
+    steps={kitchenProcess}
+  />
+  <Gallery heading="Kitchens and living spaces" items={gallery.filter((g) => g.cat === 'Kitchen' || g.cat === 'Living')} filters={false} moreLink={{ href: '/projects', label: 'See all our projects' }} />
+  <Reviews tag="kitchen" />
+  <QuoteSection heading="Tell us about your kitchen." defaultRoom="Kitchen" />
+</Base>

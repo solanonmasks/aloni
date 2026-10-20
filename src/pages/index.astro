@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import Services from '../components/Services.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import Process from '../components/Process.astro';
+import Gallery from '../components/Gallery.astro';
+import Reviews from '../components/Reviews.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import { hero } from '../data/site.js';
+---
+<Base
+  title="Bathroom & Kitchen Renovation in Coquitlam | Aloni Renovation"
+  description="Owner-operated bathroom and kitchen renovations in Coquitlam and the Tri-Cities for over 15 years. HomeStars Best of 2026. Free in-home quotes: 604-727-2882."
+>
+  <Hero
+    title="Bathrooms and kitchens, from first sketch to final caulk line."
+    sub="Owner-operated in Coquitlam for over 15 years. We design it, take it down to the studs, build it back and clean up. One crew, one quote, one person to call."
+    main={hero.main}
+    inset={hero.inset}
+  />
+  <ProofStrip />
+  <Services />
+  <BeforeAfter />
+  <Process />
+  <Gallery moreLink={{ href: '/projects', label: 'See all our projects' }} />
+  <Reviews />
+  <QuoteSection />
+</Base>

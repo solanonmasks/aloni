@@ -1,0 +1,53 @@
+---
+// Reviews: one big quote, or a row of cards when there are several.
+import { contact, homestarsIcon, reviews as all } from '../data/site.js';
+
+const { tag } = Astro.props;
+const list = tag ? all.filter((r) => r.tags.includes(tag)) : all;
+const [first, ...rest] = list;
+---
+{first && (
+<section class="wrap section">
+  <figure class="review-main">
+    <blockquote>“{first.quote}”</blockquote>
+    <figcaption>{first.name} <span>· {first.job}</span></figcaption>
+  </figure>
+  {rest.length > 0 && (
+    <div class="review-row">
+      {rest.map((r) => (
+        <figure class="review-card">
+          <blockquote>“{r.quote}”</blockquote>
+          <figcaption>{r.name} <span>· {r.job}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  )}
+  <div class="review-foot">
+    <img src={homestarsIcon} alt="HomeStars" width="36" height="36" />
+    <span>HomeStars Best of Award 2026</span>
+    <a href={contact.homestars}>Read our HomeStars reviews</a>
+  </div>
+</section>
+)}
+
+<style>
+  .review-main { margin: 0; max-width: 1100px; }
+  .review-main blockquote {
+    margin: 0; font-family: var(--serif); font-size: clamp(28px, 3.4vw, 52px);
+    line-height: 1.2; letter-spacing: -.015em; text-wrap: pretty;
+  }
+  figcaption { margin-top: 24px; font-weight: 600; }
+  figcaption span { font-weight: 400; color: var(--meta); }
+  .review-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 32px var(--col-gap); margin-top: 56px;
+  }
+  .review-card { margin: 0; padding-top: 20px; border-top: 1.5px solid var(--espresso); }
+  .review-card blockquote { margin: 0; font-family: var(--serif); font-size: 24px; line-height: 1.3; }
+  .review-foot {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px;
+    margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule);
+  }
+  .review-foot img { width: 36px; height: 36px; display: block; }
+  .review-foot span, .review-foot a { font-weight: 600; }
+</style>

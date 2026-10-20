@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import Gallery from '../components/Gallery.astro';
+import Reviews from '../components/Reviews.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+---
+<Base
+  title="Our Work: Bathroom & Kitchen Projects | Aloni Renovation"
+  description="Photos of recent bathroom, kitchen and whole-house renovations by Aloni Renovation in Coquitlam and the Tri-Cities, with before and after pictures."
+>
+  <PageIntro
+    title="Our work"
+    sub="Bathrooms, kitchens and whole floors we’ve renovated around Coquitlam and the Tri-Cities. Tap any photo to see it larger."
+  />
+  <BeforeAfter heading="Before and after" />
+  <Gallery heading="Project photos" />
+  <Reviews />
+  <QuoteSection />
+</Base>
