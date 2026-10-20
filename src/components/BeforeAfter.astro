@@ -1,0 +1,116 @@
+---
+// Before & after viewer. Pick a job, then flip between Before and After.
+// Default: first job, showing After. Picking another job switches to Before.
+import { beforeAfter, wix, wixSrcset } from '../data/site.js';
+
+const { jobs = beforeAfter, heading = 'Same room. Same window.' } = Astro.props;
+const data = jobs.map((j) => ({
+  label: j.label,
+  story: j.story,
+  before: { src: wix(j.before, 900, 1200), srcset: wixSrcset(j.before, '3/4') },
+  after: { src: wix(j.after, 900, 1200), srcset: wixSrcset(j.after, '3/4') },
+}));
+const first = data[0];
+---
+<section class="bg-green" data-ba={JSON.stringify(data)}>
+  <div class="wrap section two-col ba">
+    <div>
+      <h2 class="h2 ba-title">{heading}</h2>
+      <p class="ba-story" aria-live="polite">{first.story}</p>
+      {data.length > 1 && (
+        <div class="chips ba-jobs" role="group" aria-label="Choose a job">
+          {data.map((j, i) => (
+            <button type="button" class="ba-job" data-job={i} aria-pressed={i === 0 ? 'true' : 'false'}>{j.label}</button>
+          ))}
+        </div>
+      )}
+      <div class="ba-toggle" role="group" aria-label="Before or after">
+        <button type="button" data-side="before" aria-pressed="false">Before</button>
+        <button type="button" data-side="after" aria-pressed="true">After</button>
+      </div>
+    </div>
+    <figure class="ba-figure">
+      <img
+        class="photo ba-img"
+        src={first.after.src}
+        srcset={first.after.srcset}
+        sizes="(max-width: 1000px) 100vw, 50vw"
+        width="900" height="1200"
+        alt={`${first.label}, after`}
+        loading="lazy" decoding="async"
+      />
+      <figcaption class="ba-label">After</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .ba { align-items: center; }
+  .ba-title { margin-bottom: 20px; }
+  .ba-story { margin: 0 0 28px; max-width: 480px; color: var(--green-text); }
+  .ba-jobs { margin-bottom: 28px; }
+  .ba-job {
+    background: transparent; color: var(--limestone); border: 1.5px solid var(--limestone);
+    border-radius: 999px; font-weight: 600; font-size: 16px; padding: 10px 18px; cursor: pointer; min-height: 44px;
+  }
+  .ba-job[aria-pressed="true"] { background: var(--limestone); color: var(--tile-green); }
+  .ba-toggle { display: inline-flex; background: var(--espresso); border-radius: 999px; padding: 5px; }
+  .ba-toggle button {
+    background: transparent; color: var(--limestone); border: 0; border-radius: 999px;
+    font-weight: 700; font-size: 17px; padding: 12px 26px; cursor: pointer; min-height: 48px;
+  }
+  .ba-toggle button[aria-pressed="true"] { background: var(--limestone); color: var(--espresso); }
+  .ba-figure { margin: 0; position: relative; }
+  .ba-img { aspect-ratio: 3 / 4; max-height: 760px; background: #24392F; transition: opacity .18s ease; }
+  .ba-img.is-fading { opacity: 0; }
+  .ba-label {
+    position: absolute; top: 16px; left: 16px; background: var(--limestone); color: var(--espresso);
+    font-weight: 700; font-size: 15px; padding: 6px 12px; border-radius: 999px;
+  }
+  @media (prefers-reduced-motion: reduce) { .ba-img { transition: none; } }
+</style>
+
+<script>
+  document.querySelectorAll('[data-ba]').forEach((root) => {
+    const jobs = JSON.parse(root.dataset.ba);
+    const img = root.querySelector('.ba-img');
+    const label = root.querySelector('.ba-label');
+    const story = root.querySelector('.ba-story');
+    const jobBtns = root.querySelectorAll('[data-job]');
+    const sideBtns = root.querySelectorAll('[data-side]');
+    let job = 0;
+    let side = 'after';
+
+    // Preload every image so switching is instant.
+    jobs.forEach((j) => { new Image().src = j.before.src; new Image().src = j.after.src; });
+
+    function render() {
+      const j = jobs[job];
+      const pic = j[side];
+      img.classList.add('is-fading');
+      setTimeout(() => {
+        img.srcset = pic.srcset;
+        img.src = pic.src;
+        img.alt = `${j.label}, ${side}`;
+        img.classList.remove('is-fading');
+      }, 90);
+      label.textContent = side === 'after' ? 'After' : 'Before';
+      story.textContent = j.story;
+      jobBtns.forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.job) === job)));
+      sideBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.side === side)));
+    }
+
+    jobBtns.forEach((b) => b.addEventListener('click', () => {
+      const next = Number(b.dataset.job);
+      if (next === job) return;
+      job = next;
+      side = 'before';
+      render();
+    }));
+    sideBtns.forEach((b) => b.addEventListener('click', () => {
+      if (b.dataset.side === side) return;
+      side = b.dataset.side;
+      render();
+    }));
+  });
+</script>

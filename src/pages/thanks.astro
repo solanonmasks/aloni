@@ -1,0 +1,12 @@
+---
+// Shown after the form is sent when JavaScript is off.
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { contact } from '../data/site.js';
+---
+<Base quoteHref="/contact" title="Thank you | Aloni Renovation" description="Thanks for your quote request.">
+  <meta name="robots" content="noindex" slot="head" />
+  <PageIntro title="Thank you. We'll call you." sub={`Usually within one business day. In a hurry? Call ${contact.phone}.`}>
+    <div class="btn-row"><a class="btn btn-primary" href="/">Back to home</a></div>
+  </PageIntro>
+</Base>

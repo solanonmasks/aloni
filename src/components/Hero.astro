@@ -1,0 +1,44 @@
+---
+// Two-column hero: text on the left, a main photo with an overlapping inset on the right.
+import Img from './Img.astro';
+import { contact, homestarsIcon } from '../data/site.js';
+
+const { title, sub, main, inset, showWhatsApp = true } = Astro.props;
+---
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <a class="hs-pill" href={contact.homestars}>
+        <img src={homestarsIcon} alt="" width="26" height="26" />
+        HomeStars Best of 2026
+      </a>
+      <h1 class="h1 hero-title">{title}</h1>
+      <p class="lede hero-sub">{sub}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#quote">Get a free quote</a>
+        {showWhatsApp && <a class="btn btn-outline" href={contact.whatsapp}>WhatsApp us a photo</a>}
+      </div>
+    </div>
+    <div class="hero-media">
+      <Img id={main.id} ext={main.ext} ratio="4/5" alt={main.alt} eager sizes="(max-width: 1100px) 100vw, 50vw" />
+      {inset && <Img id={inset.id} ext={inset.ext} ratio="3/4" alt={inset.alt} class="hero-inset" sizes="(max-width: 1100px) 44vw, 22vw" />}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(48px, 6vw, 88px); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
+    gap: 40px var(--col-gap);
+    align-items: center;
+  }
+  .hero-title { margin-top: 24px; }
+  .hero-sub { margin: 26px 0 0; }
+  .hero-media { position: relative; padding: 0 0 clamp(40px, 5vw, 72px) clamp(40px, 5vw, 80px); }
+  .hero-media :global(.hero-inset) {
+    position: absolute; left: 0; bottom: 0; width: 44%;
+    border: 8px solid var(--limestone);
+  }
+</style>

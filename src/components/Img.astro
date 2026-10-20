@@ -1,0 +1,24 @@
+---
+// Responsive photo from the Wix image server.
+// Props: id, ratio ("4/5"), alt, ext ("jpg"), sizes, eager, class, style
+import { wix, wixSrcset } from '../data/site.js';
+
+const { id, ratio = '4/3', alt = '', ext = 'jpg', sizes = '100vw', eager = false, class: cls = '', style = '', ...rest } = Astro.props;
+const [a, b] = ratio.split('/').map(Number);
+const w = 1200;
+const h = Math.round((w * b) / a);
+---
+<img
+  class={`photo ${cls}`}
+  src={wix(id, w, h, ext)}
+  srcset={wixSrcset(id, ratio, ext)}
+  sizes={sizes}
+  width={w}
+  height={h}
+  alt={alt}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={eager ? 'high' : undefined}
+  style={`aspect-ratio:${ratio};${style}`}
+  {...rest}
+/>
